@@ -20,6 +20,7 @@ location=$(curl -X POST "$domain/reset-password/confirm" \
 
 if [[ $location == "$domain/login?success=Password+updated" ]]; then
     echo "$(make_green 'SUCCESS!!!') Password of $1 was changed to $2."
+    echo "$location"
 else
     echo "Failure. $location"
 fi
