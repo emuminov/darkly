@@ -8,7 +8,9 @@ make_green() {
   echo -e "\033[1;92m$1\033[1;0m"
 }
 
-. ../login_as_johndoe.sh
+script_directory=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+. "$script_directory/../login_as_johndoe.sh"
 
 domain="http://localhost:4942"
 url_forum="$domain/forum/new"
@@ -19,7 +21,7 @@ location=$(curl -X POST "$url_forum" \
     -s \
     -w "%{redirect_url}" \
     -d "title=\"need help!\"&content=$funny_script" \
-    -b cookie.txt);
+    -b "$cookie_file");
 
 echo "Listening to the server..."
 seconds=0
