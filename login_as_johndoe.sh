@@ -20,7 +20,7 @@ location=$(curl -X POST "$domain"/login \
     -c cookie.txt);
 
 if [[ "$location" == "$domain/" ]]; then 
-    echo "$(make_green SUCCESS!) Logged in as John Doe.."
+    echo "$(make_green SUCCESS!) Logged in as John Doe 😈"
 else
     echo "Were not able to login as John Doe...😔"
     exit 1
