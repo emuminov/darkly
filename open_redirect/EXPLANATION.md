@@ -24,11 +24,7 @@ The `/redirect` endpoint takes a `next` parameter and redirects the user to what
 
 ## Impact
 
-Open redirects are mainly used for phishing: the victim sees a link that begins with the trusted website, and does not notice the jump to a page controlled by the attacker. Those kind of links can be obscured by various URL shorteners.
-
-## Root Cause
-
-This happens due to the endpoint using the raw client-supplied `next` value as the redirect target, without checking that it is a relative path inside the website.
+Open redirects are mainly used for phishing: the victim sees a link that begins with the trusted website, and does not notice the jump to a page controlled by the attacker. It can also leak sensitive data if the application ever appends tokens or parameters to the redirect URL. This happens due to the endpoint using the raw client-supplied `next` value as the redirect target, without checking that it is a relative path inside the website.
 
 ## Remediation
 

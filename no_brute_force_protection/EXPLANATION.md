@@ -19,11 +19,7 @@ The `/login` endpoint has no brute force protection: there is no rate limiting, 
 
 ## Impact
 
-Any account that uses a dictionary password can be taken over in minutes. Combined with `predictable_password_reset`, which lets anyone set a new weak password for an account, this makes every account on the website compromisable.
-
-## Root Cause
-
-This happens due to the login endpoint accepting unlimited unthrottled authentication attempts, and due to the absence of a real password policy: no rules beyond a 5-character minimum and no check against lists of common passwords.
+Any account that uses a dictionary password can be taken over in minutes. Combined with `predictable_password_reset`, which lets anyone set a new weak password for an account, this makes every account on the website compromisable. This happens due to the login endpoint accepting unlimited unthrottled authentication attempts, and due to the absence of a real password policy: no rules beyond a 5-character minimum and no check against lists of common passwords.
 
 ## Remediation
 

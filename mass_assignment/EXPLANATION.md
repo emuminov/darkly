@@ -18,11 +18,7 @@ The `/api/profile` endpoint accepts a `role` property in the PATCH request. The 
 
 ## Impact
 
-Any authenticated user can escalate their privileges and access staff-only pages such as `/staff/dashboard`.
-
-## Root Cause
-
-This happens due to the endpoint blindly assigning all client-supplied properties to the user object, including the ones (`role`) that were never meant to be client-controlled.
+Any authenticated user can escalate their privileges and access staff-only pages such as `/staff/dashboard`. This happens due to the endpoint blindly assigning all client-supplied properties to the user object, including the ones (`role`) that were never meant to be client-controlled.
 
 ## Remediation
 
