@@ -2,7 +2,13 @@
 
 ## OWASP Category
 
-A01:2021 - Broken Access Control
+[A01:2025 - Broken Access Control](https://top10.owasp.org/2025/A01_2025-Broken_Access_Control/)
+
+Also: OWASP API1:2023 - Broken Object Level Authorization
+
+## References
+
+- [OWASP Cheat Sheet - Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
 
 ## Summary
 
@@ -15,11 +21,13 @@ A01:2021 - Broken Access Control
 ## Impact
 
 Any authenticated student can read all students' grades and project results, a clear violation of data confidentiality between students.
+```sh
+/api/grades              # own student grades
+/api/grades?student={id} # grades of student with {id}
+```
 
-## Root Cause
-
-The `/api/grades` endpoint checks that a valid session exists, but never checks that the requesting user is authorized to see the specific grade records returned (e.g. scoping the query to `student == current_user.id`, or requiring a staff/admin role).
+This happens due to server not having proper authorization *object-level authorization* check for `/api/grades` endpoint.
 
 ## Remediation
 
-Enforce object-level authorization on `/api/grades`: filter results to the authenticated student's own grades, or require a staff/admin role for the unfiltered listing.
+Enforce object-level authorization on `/api/grades?student={id}`. Ensure that student can see only their own grades, or that the session of a user who tries to access grades of other student has staff/admin role.
