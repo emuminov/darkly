@@ -1,4 +1,4 @@
-# Privilege Escalation
+# Mass Assignment
 
 ## OWASP Category
 
